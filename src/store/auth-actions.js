@@ -5,7 +5,7 @@ export const signup = (formProps, callback) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API}/signup/`,
+        `${process.env.REACT_APP_API}/users/signup/`,
         formProps
       );
 
@@ -24,7 +24,7 @@ export const signin = (formProps, callback) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API}/signin/`,
+        `${process.env.REACT_APP_API}/users/signin/`,
         formProps
       );
 
