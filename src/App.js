@@ -8,36 +8,43 @@ import Dashboard from "./features/dashboard/Dashboard";
 import Signout from "./components/auth/Signout";
 import Signin from "./components/auth/Signin";
 import Footer from "./components/layout/Footer";
+import Grid from "@mui/material/Grid";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route
-            path="/signout"
-            element={
-              <PrivateRoute>
-                <Signout />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <Grid container direction="column">
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid item>
+        <main>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route
+              path="/signout"
+              element={
+                <PrivateRoute>
+                  <Signout />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </main>
+      </Grid>
+      <Grid item>
+        <Footer />
+      </Grid>
+    </Grid>
   );
 }
 

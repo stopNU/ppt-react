@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { signout } from "../../store/auth-actions";
+import { signout } from "../../store/auth/auth-actions";
 
 const Signout = () => {
   const dispatch = useDispatch();

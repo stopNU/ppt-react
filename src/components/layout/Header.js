@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-//import styled from "styled-components";
-import { styled } from "@mui/system";
-import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import AppBar from "@mui/material/AppBar";
 
 const Nav = styled("nav")`
   display: flex;
@@ -26,14 +25,15 @@ const Header = (props) => {
   const { authenticated } = useSelector((state) => state.auth);
 
   return (
-    <Container maxWidth="false">
-      <Box
+    <AppBar position="static">
+      <Container
+        maxWidth="false"
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "end",
           textAlign: "center",
-          minHeight: "70px",
+          minHeight: "64px",
         }}
       >
         <Nav>
@@ -41,9 +41,7 @@ const Header = (props) => {
             to="/dashboard"
             className={(navData) => (navData.isActive ? "active" : "")}
           >
-            <Typography variant="p">
-              Dashboard
-            </Typography>
+            <Typography variant="p">Dashboard</Typography>
           </StyledNavLink>
           <StyledNavLink
             to="/signup"
@@ -61,8 +59,8 @@ const Header = (props) => {
             </Typography>
           </StyledNavLink>
         </Nav>
-      </Box>
-    </Container>
+      </Container>
+    </AppBar>
   );
 };
 

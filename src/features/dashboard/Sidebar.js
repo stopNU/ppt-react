@@ -1,6 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -59,43 +58,29 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Sidebar() {
-  //const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-
-  /*const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };*/
-
-  const handleToggleDrawer = () => {
-    setOpen(!open);
-  };
-
+export default function Sidebar({ open, onToggle }) {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleToggleDrawer}>
-            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemText primary={"asd"} />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemText primary={"asd2"} />
-          </ListItem>
-        </List>
-      </Drawer>
-    </Box>
+    <Drawer variant="permanent" open={open}>
+      <DrawerHeader>
+        <IconButton onClick={onToggle}>
+          {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemText primary={"Add +"} />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemText primary={"Stocks"} />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary={"Crypto"} />
+        </ListItem>
+      </List>
+    </Drawer>
   );
 }

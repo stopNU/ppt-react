@@ -1,6 +1,7 @@
+
 import { Formik } from "formik";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/system";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { styled } from "@mui/material/styles";
 
 const FormControl = styled("div")`
   display: grid;
@@ -9,6 +10,7 @@ const FormControl = styled("div")`
 `;
 
 const Form = (props) => {
+  
   const submitForm = (formProps) => {
     props.onSubmit(formProps);
   };
@@ -66,17 +68,18 @@ const Form = (props) => {
             />
             {errors.password && touched.password && errors.password}
           </FormControl>
-          <Button
+          <LoadingButton
             variant="outlined"
             fullWidth
+            loading={props.loading}
             type="submit"
             disabled={isSubmitting}
             sx={{
-              marginTop: "20px"
+              mt: "20px",
             }}
           >
             {props.label || "Submit"}
-          </Button>
+          </LoadingButton>
         </form>
       )}
     </Formik>

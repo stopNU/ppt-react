@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { signin } from "../../store/auth-actions";
+import { signin } from "../../store/auth/auth-actions";
 import Form from "./Form";
 
 // MUI
-import { styled } from "@mui/system";
+import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -29,13 +30,16 @@ const Signin = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(false); // Move to redux?
 
-  const handleSubmit = (formProps) => {
-    dispatch(
+  const handleSubmit = async (formProps) => {
+    setLoading(true);
+    await dispatch(
       signin(formProps, () => {
         navigate("/dashboard", { replace: true });
       })
     );
+    setLoading(false);
   };
 
   return (
@@ -56,7 +60,7 @@ const Signin = (props) => {
         >
           Sign in
         </Typography>
-        <Form onSubmit={handleSubmit} label="Login" />
+        <Form onSubmit={handleSubmit} loading={loading} label="Login" />
 
         {authState.errorMessage !== "" && (
           <p>Error: {authState.errorMessage}</p>
