@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
 import PrivateRoute from "./components/auth/PrivateRoute";
-import Header from "./components/Header";
+import Header from "./components/layout/Header";
 import Welcome from "./components/Welcome";
 import Signup from "./components/auth/Signup";
-import Feature from "./components/Feature";
+import Dashboard from "./features/dashboard/Dashboard";
 import Signout from "./components/auth/Signout";
 import Signin from "./components/auth/Signin";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -26,16 +27,16 @@ function App() {
             }
           />
           <Route
-            path="/feature"
+            path="/dashboard"
             element={
               <PrivateRoute>
-                <Feature />
+                <Dashboard />
               </PrivateRoute>
             }
           />
         </Routes>
       </main>
-      <footer>Foorter</footer>
+      <Footer />
     </div>
   );
 }

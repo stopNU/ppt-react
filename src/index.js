@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/index";
-//import { applyMiddleware, createStore } from "redux";
-//import reduxThunk from "redux-thunk";
+import { ThemeProvider } from "styled-components";
+import CssBaseline from "@mui/material/CssBaseline";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 //import reducers from "./store/reducers";
 import App from "./App";
 
+import theme from "./theme";
 
 //const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
@@ -18,7 +19,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

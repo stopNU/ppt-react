@@ -1,7 +1,29 @@
-import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../../store/auth-actions";
+import Form from "./Form";
+
+// MUI
+import { styled } from "@mui/system";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+const StyledBox = styled(Box)`
+  background-color: #343434;
+  padding: 30px 40px;
+  border-radius: 8px;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 const Signup = (props) => {
   const navigate = useNavigate();
@@ -11,67 +33,36 @@ const Signup = (props) => {
   const handleSubmit = (formProps) => {
     dispatch(
       signup(formProps, () => {
-        navigate("/feature", { replace: true });
+        navigate("/dashboard", { replace: true });
       })
     );
   };
 
   return (
-    <div>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          handleSubmit(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Register
-            </button>
-          </form>
-        )}
-      </Formik>
+    <Container
+      maxWidth="lg"
+      sx={{
+        height: "85vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <StyledBox maxWidth="sm">
+        <Typography
+          variant="h5"
+          sx={{
+            marginBottom: "20px",
+          }}
+        >
+          Sign up
+        </Typography>
+        <Form onSubmit={handleSubmit} label="Register" />
 
-      {authState.errorMessage !== "" && <p>Error: {authState.errorMessage}</p>}
-    </div>
+        {authState.errorMessage !== "" && (
+          <p>Error: {authState.errorMessage}</p>
+        )}
+      </StyledBox>
+    </Container>
   );
 };
 

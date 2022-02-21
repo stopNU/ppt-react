@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const authState = useSelector((state) => state.auth);
   const isUserAuthenticated = authState.authenticated !== "";
 
-  return isUserAuthenticated ? children : <Navigate to="/signup" />;
+  return isUserAuthenticated ? children : <Navigate to="/signin" />;
 };
 
 export default PrivateRoute;
