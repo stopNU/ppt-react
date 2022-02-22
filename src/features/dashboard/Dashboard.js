@@ -17,6 +17,7 @@ const Dashboard = () => {
   };
 
   const handleFetchPositions = async (e) => {
+    // TEMPORARY
     const res = await axios.get(`${process.env.REACT_APP_API}/positions/`, {
       headers: {
         authorization: localStorage.getItem("token"),
@@ -27,7 +28,8 @@ const Dashboard = () => {
   };
 
   const handleAddPosition = async (e) => {
-    const res = await axios.post(
+    // TEMPORARY
+    await axios.post(
       `${process.env.REACT_APP_API}/positions/add`,
       {
         name: "Name" + Math.random(),
