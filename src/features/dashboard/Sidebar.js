@@ -58,7 +58,12 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Sidebar({ open, onToggle }) {
+export default function Sidebar({
+  open,
+  onToggle,
+  onAddPosition,
+  onFetchPositions,
+}) {
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
@@ -69,7 +74,10 @@ export default function Sidebar({ open, onToggle }) {
       <Divider />
       <List>
         <ListItem button>
-          <ListItemText primary={"Add +"} />
+          <ListItemText primary={"Fetch"} onClick={onFetchPositions} />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary={"Add +"} onClick={onAddPosition} />
         </ListItem>
       </List>
       <Divider />
